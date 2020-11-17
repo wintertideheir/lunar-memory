@@ -12,8 +12,8 @@ struct Note
      * be written in Lunar Memory's variant of LuaTeX, and verified
      * correct before being embodied in a note.
      */
-    const time_t code_time;
-    const char *code;
+    time_t code_time;
+    char *code;
 
     /* The category of the note, given by an alphabetic identifier.
      * Categories may be composed of subcategories, in which case the
