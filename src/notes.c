@@ -1,5 +1,6 @@
 #include <time.h>
 #include <math.h>
+#include <float.h>
 
 /* The maximum score possible for a note. Because the maxiumum reaction
  * time of a human is around 0.2 seconds, the maximum score is it's
@@ -65,4 +66,25 @@ float ebbinghaus_curve(float time,
                        float alpha)
 {
     return 1f / ((alpha * logf(time + 1f)) + 1f);
+}
+
+/* Calculate the coefficient for a Ebbinghaus curve given a score and
+ * time.
+ *
+ * Parameters:
+ *     * score, a given score between 1f and 0f.
+ *     * time, the non-zero length of time between when the note was
+ *       last shown and when the score was recorded.
+ *
+ * Returns:
+ *     The coefficient alpha for the Ebbinghaus curve that corresponds
+ *     to the given score and time.
+ */
+float ebbinghaus_curve_coefficient(float score,
+                                   float time)
+{
+    // Prevent a division by zero error 
+    float score_adjusted = (score == 0) ? FLT_EPSILON : score;
+
+    return ((1 / score_adjusted) - 1) / logf(time + 1f);
 }
