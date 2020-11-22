@@ -8,16 +8,11 @@
 
 struct Note
 {
-    /* Code to run the note and when it was created. The code ought to
-     * be written in Lunar Memory's variant of LuaTeX, and verified
-     * correct before being embodied in a note.
-     */
-    time_t code_time;
+    time_t last_updated;
     char *code;
 
-    /* The category of the note, given by an alphabetic identifier.
-     * Categories may be composed of subcategories, in which case the
-     * identifiers are concatenated with periods.
+    /* The category of the note. Subcategories are seperated by periods
+     * and read from left to right.
      */
     char* category;
 
@@ -30,7 +25,7 @@ struct Note
     time_t score_time;
     float score;
 
-    /* Each note is tagged with tag_lens strings. These tags provide
+    /* Each note is tagged with tags_len strings. These tags provide
      * simple, additional information, like the type of note, what
      * collection it came from, or it's revision status.
      */
@@ -38,13 +33,9 @@ struct Note
     char **tags;
 };
 
-/* The forgetting curve (called the Ebbinghaus curve in Lunar Memory
- * for easier differentiation) describes how a particular kind of
- * memory failiure, transience, relates to time.
- *
- * This particular function uses a single free parameter rather than
- * the original two parameters, has a maximum of 1f rather than 100f,
- * and is shifted to the left by 1f.
+/* An improved forgetting curve (called the Ebbinghaus curve in Lunar
+ * Memory) describing how a particular kind of memory failiure,
+ * transience, relates to time.
  *
  * Parameters:
  *     * time, a unitless meausure of how long time has passed since
