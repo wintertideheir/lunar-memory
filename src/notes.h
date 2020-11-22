@@ -8,7 +8,13 @@
 
 struct Note
 {
-    time_t last_updated;
+    /* When the code was last updated. */
+    time_t updated;
+    /* The second to last time the note was presented. */
+    time_t presented;
+    /* The last time the note was presented. */
+    time_t scored;
+
     char *code;
 
     /* The category of the note. Subcategories are seperated by periods
@@ -16,20 +22,17 @@ struct Note
      */
     char* category;
 
-    /* The score calculated and time of recording when the last note
-     * was presented. The score is by default defined as the the
-     * inverse of the time it takes to process the note. Notes may
-     * choose other methods of assigning scores. The score should
-     * always be between 0 and MAX_SCORE.
+    /* The score calculated when the last note was presented.
+     *
+     * Defined by default as the the inverse of the time it takes to
+     * process the note. Notes may choose other methods of assigning
+     * scores. The score should always be between 0 and MAX_SCORE.
      */
-    time_t score_time;
     float score;
 
-    /* Each note is tagged with tags_len strings. These tags provide
-     * simple, additional information, like the type of note, what
-     * collection it came from, or it's revision status.
-     */
+    /* The number of tags. */
     int tags_len;
+    /* A pointer to an array of tags of length tags_len */
     char **tags;
 };
 
