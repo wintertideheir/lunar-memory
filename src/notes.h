@@ -10,10 +10,8 @@ struct Note
 {
     /* When the code was last updated. */
     time_t updated;
-    /* The second to last time the note was presented. */
-    time_t presented;
-    /* The last time the note was presented. */
-    time_t scored;
+    /* The last two times the note was presented. */
+    time_t presented[2];
 
     char *code;
 
