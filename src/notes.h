@@ -29,11 +29,6 @@ struct Note
      * scores. The score should always be between 0 and MAX_SCORE.
      */
     float score;
-
-    /* The number of tags. */
-    int tags_len;
-    /* A pointer to an array of tags of length tags_len */
-    char **tags;
 };
 
 /* An improved forgetting curve (called the Ebbinghaus curve in Lunar
