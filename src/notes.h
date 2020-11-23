@@ -1,11 +1,5 @@
 #include <time.h>
 
-/* The maximum score possible for a note. Because the maxiumum reaction
- * time of a human is around 0.2 seconds, the maximum score is it's
- * inverse, 5 per second.
- */
-#define MAX_SCORE 5.0f
-
 struct Note
 {
     /* When the code was last updated. */
@@ -21,10 +15,7 @@ struct Note
     char* category;
 
     /* The score calculated when the last note was presented.
-     *
-     * Defined by default as the the inverse of the time it takes to
-     * process the note. Notes may choose other methods of assigning
-     * scores. The score should always be between 0 and MAX_SCORE.
+     * Must be between 0f and 1f.
      */
     float score;
 };
